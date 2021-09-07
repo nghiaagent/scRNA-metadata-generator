@@ -32,9 +32,9 @@ count <- left_join(count, metadata) %>%                                   # Comb
   nest(cols = !c(dir, filename))
 
 #### Export to ./galaxy-upload ####
-map2(count$cols, count$filename,
+map2(count$cols, count$filename, # Map nested dfs to .x, map filename to .y
      ~write_delim(.x, 
-                  file = str_c(dir_out, "/", .y, sep = ""),
+                  file = str_c(dir_out, "/", .y, sep = ""), # Generate path name to export to
                   delim = "\t",
                   append = FALSE))
 
